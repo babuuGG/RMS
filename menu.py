@@ -2,14 +2,17 @@ import tkinter as tk
 from tkinter import ttk
 import mysql.connector
 import tkinter.messagebox as messagebox
-
+from PIL import Image,ImageTk
 class Application(tk.Tk):
     def __init__(self):
         super().__init__()
         self.title("Beach Side Restaurant")
         self.geometry("600x600")
                
-       
+        self.background_image = Image.open("abc.jpg")
+        self.background_photo = ImageTk.PhotoImage(self.background_image)
+        self.background_label = tk.Label(self, image=self.background_photo)
+        self.background_label.place(x=0, y=0, relwidth=1, relheight=1)
         
         self.create_widgets()
         self.load_menu_items()
