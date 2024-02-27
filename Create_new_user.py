@@ -7,7 +7,7 @@ from tkinter import messagebox
 root = Tk()
 root.title("Create a new user")
 root.geometry("500x500")
-root.configure(bg='yellow')
+root.configure(bg='yellow') #tried every method to put a background image , but it showed error everytime
 registernewcustomer=Frame(root)
 registernewcustomer.pack()
 

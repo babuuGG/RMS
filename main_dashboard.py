@@ -1,5 +1,5 @@
 from tkinter import *
-
+from PIL import Image, ImageTk
 
 
 
@@ -16,7 +16,10 @@ root = Tk()
 root.title('BEACH SIDE RESTAURANT')
 root.geometry('550x600')
 root.eval("tk::PlaceWindow . center")
-
+bg = Image.open('b.jpg')
+photo = ImageTk.PhotoImage(bg)
+background = Label(root, image=photo)
+background.pack(fill=BOTH, expand=True)
 style = {'font': ('Arial', 12), 'bg': '#2C3E50', 'fg': "white", 'bd': 5}
 l1 = Label(root, text="Welcome to Beach Side Restaurant", width=30, height=2, fg="red", font=10)
 l1.place(x=150, y=80)
