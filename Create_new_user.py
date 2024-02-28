@@ -1,8 +1,39 @@
 from tkinter import *
-
+import mysql.connector
 from tkinter import messagebox
 
+def open_win():
+    def store():
+            try:
+                connection = mysql.connector.connect(
+                    host="localhost",
+                    port="3306",
+                    user="root",
+                    password="Roles@3337",
+                    database="project",
+                )
+                cursor = connection.cursor()
+                customer_name = E1.get()
+                customer_age = E2.get()
+                customer_email = E3.get()
+                customer_contact= E4.get()
+                customer_username = E5.get()
+                customer_password = E6.get()
+                query = "INSERT INTO register(customer_name,customer_age,customer_email,customer_contact,customer_username,customer_password) VALUES (%s,%s,%s,%s,%s,%s)"
+                data = (customer_name,customer_age,customer_email,customer_contact,customer_username,customer_password) 
+                cursor.execute(query,data)
+                connection.commit()
 
+                messagebox.showinfo("success","user is added succesfully")
+
+            except Exception as e:
+                print(f"Error:{e}")
+                messagebox.showerror("Error",f"Error:{e}")    
+            finally:
+                if connection.is_connected():
+                    cursor.close()
+                    connection.close()
+            
             
 root = Tk()
 root.title("Create a new user")
