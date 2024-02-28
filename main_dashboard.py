@@ -1,9 +1,10 @@
 from tkinter import *
-from PIL import Image, ImageTk
 import mysql.connector
 from tkinter import messagebox
-
+from Create_new_user import open_win
+from PIL import Image, ImageTk
 from menu import Application
+
 def login():
     try:
         connection = mysql.connector.connect(
@@ -40,7 +41,6 @@ def login():
             cursor.close()
             connection.close()
 
-
 root = Tk()
 
 root.title('BEACH SIDE RESTAURANT')
@@ -66,16 +66,33 @@ PW.place(x=50, y=235)
 e2 = Entry(root,show="*")
 e2.place(x=200, y=240)
 
-submit = Button(root, text="LOGIN", **style)
+submit = Button(root, text="LOGIN", command=login, **style)
 submit.place(x=200, y=280)
 
-arko_button2 = Button(root, text="Create New User", **style)
+arko_button2 = Button(root, text="Create New User", **style, command=open_win)
 arko_button2.place(x=270, y=280)
-arko_button4 = Button(root,text="ADMIN LOGIN",**style)
+
+def open_store1():
+    root.destroy()
+    from admin_login import store1
+    store1()
+
+arko_button4 = Button(root,text="ADMIN LOGIN",**style,command=open_store1)
 arko_button4.place(x=200,y=320)
 
 arko_button5 = Button(root, text="QUIT",**style,command=root.destroy)
 arko_button5.place(x=200,y=360)
+
+
+def open_new_portal():
+    new_window = Tk()
+    new_window.title("Create a new ID")
+    aaa = Label(new_window, text="Click here to make a new account")
+    aaa.pack(padx=20, pady=20)
+
+    arko_button3 = Button(new_window, text="create a new id", command=open_new_portal)
+    arko_button3.pack(padx=20, pady=20)
+
 contact_us = Label(root, text="contact us:+9779765970448", fg="red", font=10)
 contact_us.place(x=240, y=550)
 
