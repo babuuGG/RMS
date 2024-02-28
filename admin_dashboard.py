@@ -1,31 +1,35 @@
-from tkinter import *
+import tkinter as tk
 
 from tkinter import messagebox
 
+from PIL import ImageTk,Image
 
 
+menu_window = tk.Tk()
+menu_window.title("ADMIN")
+menu_window.geometry("500x400")
 
-root = Tk()
-root.title("Admin User")
-root.geometry("500x500")
+bg_image = Image.open("abcde.jpg")
+bg_photo = ImageTk.PhotoImage(bg_image)
+background_label = tk.Label(menu_window, image=bg_photo)
+background_label.place(x=0, y=0, relwidth=1, relheight=1)
 
+heading_label = tk.Label(menu_window, text="WELCOME ADMIN", font=("Helvetica", 14, "bold"))
+heading_label.grid(row=0, column=0, padx=10, pady=10)
 
+display_button = tk.Button(menu_window, text="Display Menu")
+display_button.grid(row=1, column=0, padx=10, pady=10)
 
+add_button = tk.Button(menu_window, text="Add Item")
+add_button.grid(row=2, column=0, padx=10, pady=10)
 
-register_admin = Frame(root)
-register_admin.pack()
+remove_button = tk.Button(menu_window, text="Remove Item")
+remove_button.grid(row=3, column=0, padx=10, pady=10)
 
-Label(register_admin, text="Welcome Admin", font=("Helvetica", 20)).pack(pady=10)
+modify_button = tk.Button(menu_window, text="Modify Item")
+modify_button.grid(row=4, column=0, padx=10, pady=10)
 
-Label(register_admin, text="Username").pack(pady=5)
-E1 = Entry(register_admin, width=30)
-E1.pack(pady=5)
+quit_button = tk.Button(menu_window, text="Quit", command=menu_window.destroy)
+quit_button.grid(row=5, column=0, padx=10, pady=10)
 
-Label(register_admin, text="Admin Password").pack(pady=5)
-E2 = Entry(register_admin, width=30,show="*")
-E2.pack(pady=5)
-
-submit_btn = Button(register_admin, text="SUBMIT")
-submit_btn.pack(pady=5)
-
-root.mainloop()
+menu_window.mainloop()
