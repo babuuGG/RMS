@@ -1,14 +1,44 @@
 from tkinter import *
 from PIL import Image, ImageTk
+import mysql.connector
+from tkinter import messagebox
 
+from menu import Application
+def login():
+    try:
+        connection = mysql.connector.connect(
+            host="localhost",
+            port="3306", 
+            user="root",
+            password="Roles@3337",
+            database="project",
+        )
+        cursor = connection.cursor()
+        customer_username = e1.get()
+        customer_password = e2.get()
+        query = "SELECT * FROM register where customer_username= %s and customer_password = %s"
+        data = (customer_username, customer_password)
+        cursor.execute(query, data)
+        result = cursor.fetchone()
+        if result:
+            messagebox.showinfo("SUCCESS", "Login succesfull.")
+            root.destroy()
+            app = Application()
+            app.mainloop()
+        else:
+            messagebox.showinfo("ERROR","please enter a valid email or password")
+            # Close the main window after successful login
+            
+            # Open the application window
+            
 
-
-
-
-
-
-
-
+    except Exception as e:
+        print(f"Error: {e}")
+        messagebox.showerror("Error", f"Error: {e}")
+    finally:
+        if connection.is_connected():
+            cursor.close()
+            connection.close()
 
 
 root = Tk()
